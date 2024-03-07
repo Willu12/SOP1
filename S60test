@@ -1,0 +1,16 @@
+#!/usr/bin/tclsh
+
+# URL do archiwum, które ma być pobrane
+set archive_url "https://sample-videos.com/zip/10mb.zip"
+
+# Ścieżka docelowa, gdzie archiwum ma być rozpakowane
+set destination_path "/root"
+
+# Pobierz archiwum z sieci
+exec curl -o /tmp/archive.zip -k $archive_url 2> /dev/null
+
+# Rozpakuj archiwum do docelowej lokalizacji za pomocą unzip
+exec unzip /tmp/archive.zip -d $destination_path
+
+# Usuń tymczasowe archiwum
+file delete -force /tmp/archive.zip
